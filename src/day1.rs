@@ -13,11 +13,13 @@ pub fn part1(input: String) -> i32 {
     left.sort();
     right.sort();
 
-    zip(left, right).map(|(left_str, right_str)| {
-        let left_num: i32 = left_str.parse().unwrap();
-        let right_num: i32 = right_str.parse().unwrap();
-        (left_num - right_num).abs()
-    }).sum()
+    zip(left, right)
+        .map(|(left_str, right_str)| {
+            let left_num: i32 = left_str.parse().unwrap();
+            let right_num: i32 = right_str.parse().unwrap();
+            (left_num - right_num).abs()
+        })
+        .sum()
 }
 
 pub fn part2(input: String) -> i32 {
@@ -36,10 +38,12 @@ pub fn part2(input: String) -> i32 {
         *right_number_occurences.entry(num).or_insert(0) += 1;
     }
 
-    left.iter().map(|num_str| {
-        let num: i32 = num_str.parse().unwrap();
-        num * right_number_occurences.get(&num).or(Some(&0)).unwrap()
-    }).sum()
+    left.iter()
+        .map(|num_str| {
+            let num: i32 = num_str.parse().unwrap();
+            num * right_number_occurences.get(&num).or(Some(&0)).unwrap()
+        })
+        .sum()
 }
 
 #[cfg(test)]
